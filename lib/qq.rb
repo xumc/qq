@@ -7,6 +7,7 @@ class Qq
 		#获取令牌
 		kvs ||= open('https://graph.qq.com/oauth2.0/token?grant_type=authorization_code&client_id=' + APPID + '&client_secret=' + APPKEY + '&code=' + code + '&state='+ httpstat + REDURL).gets.split(/&|=/) if @token.nil?
 		@token ||= kvs[kvs.index("access_token") + 1]
+		binding.pry
 		#获取Openid
 		@openid ||= open('https://graph.qq.com/oauth2.0/me?access_token=' + @token).read[/\w{32}/]		
 		#获取通用验证参数
